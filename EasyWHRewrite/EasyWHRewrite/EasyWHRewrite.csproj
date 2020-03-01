@@ -7,11 +7,26 @@
     <ProjectGuid>{E93A2642-90D5-463C-A032-4CD16F486206}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>EasyWHRewrite</RootNamespace>
-    <AssemblyName>EasyWHRewrite</AssemblyName>
+    <AssemblyName>EasyWH</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +46,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>EasyWHRewrite.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -91,6 +109,20 @@
     <Compile Include="ManualForm.Designer.cs">
       <DependentUpon>ManualForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewPresetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewPresetForm.Designer.cs">
+      <DependentUpon>NewPresetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preset.cs" />
+    <Compile Include="PresetManager.cs" />
+    <Compile Include="PresetsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresetsForm.Designer.cs">
+      <DependentUpon>PresetsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebhookHandler.cs" />
@@ -105,6 +137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManualForm.resx">
       <DependentUpon>ManualForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewPresetForm.resx">
+      <DependentUpon>NewPresetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresetsForm.resx">
+      <DependentUpon>PresetsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -128,6 +166,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

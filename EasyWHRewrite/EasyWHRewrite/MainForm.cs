@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EasyWHRewrite
 {
     public partial class MainForm : Form
     {
-        public const string VERSION = "newbeta 1";
+        public const string VERSION = "newbeta 2";
         public MainForm()
         {
             InitializeComponent();
@@ -32,6 +25,16 @@ namespace EasyWHRewrite
         {
             // Create a Log-in window
             ManualForm Login = new ManualForm();
+            // Show log-in window and hide current one
+            Login.Show();
+            Login.Activate();
+            Hide();
+        }
+
+        private void PresetsButton_Click(object sender, EventArgs e)
+        {
+            // Create a Log-in window
+            PresetsForm Login = new EasyWHRewrite.PresetsForm();
             // Show log-in window and hide current one
             Login.Show();
             Login.Activate();

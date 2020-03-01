@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceStack;
-using ServiceStack.Text;
+﻿using ServiceStack;
 
 namespace EasyWHRewrite
 {
@@ -18,13 +10,23 @@ namespace EasyWHRewrite
 
         public WebhookHandler(){}
 
-        // Set the Webhook info
+        /// <summary>
+        /// Sets the webhook info
+        /// </summary>
+        /// <param name="URL">Webhook's URL</param>
+        /// <param name="Nick">Name to use</param>
         public void SetInfo(string URL, string Nick)
         {
             this.URL = URL;
             this.Nick = Nick;
             Avatar = null;
         }
+        /// <summary>
+        /// Sets the webhook info (with avatar)
+        /// </summary>
+        /// <param name="URL">Webhook's URL</param>
+        /// <param name="Nick">Name to use</param>
+        /// <param name="Avatar">Avatar URL to use</param>
         public void SetInfo(string URL, string Nick, string Avatar)
         {
             this.URL = URL;
@@ -32,10 +34,17 @@ namespace EasyWHRewrite
             this.Avatar = Avatar;
         }
 
-        // Makes and sends a JSON POST request to the Webhook
+        /// <summary>
+        /// Makes and sends a JSON POST request to the Webhook
+        /// </summary>
+        /// <param name="Content">Text to send as a message</param>
         public string Talk(string Content)
         {
-            return SendRequest(MakeJSON(Content.Replace("\"", "\\\"")));
+            string R = SendRequest(MakeJSON(Content.Replace("\"", "\\\"")));
+            if (R == "")
+                return Nick + ": " + Content;
+            else
+                return R;
         }
 
         // Makes the JSON data of a request

@@ -84,13 +84,13 @@
             // 
             // PresetsButton
             // 
-            this.PresetsButton.Enabled = false;
             this.PresetsButton.Location = new System.Drawing.Point(203, 19);
             this.PresetsButton.Name = "PresetsButton";
             this.PresetsButton.Size = new System.Drawing.Size(190, 25);
             this.PresetsButton.TabIndex = 1;
             this.PresetsButton.Text = "Presets";
             this.PresetsButton.UseVisualStyleBackColor = true;
+            this.PresetsButton.Click += new System.EventHandler(this.PresetsButton_Click);
             // 
             // ManualButton
             // 
