@@ -48,6 +48,7 @@
             this.LogoLabel.Size = new System.Drawing.Size(382, 128);
             this.LogoLabel.TabIndex = 0;
             this.LogoLabel.Text = "EasyWH";
+            this.LogoLabel.Click += new System.EventHandler(this.LogoLabel_Click);
             // 
             // LogoSubtextLabel
             // 

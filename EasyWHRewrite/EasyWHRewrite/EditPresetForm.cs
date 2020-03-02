@@ -4,29 +4,29 @@ using System.Windows.Forms;
 
 namespace EasyWHRewrite
 {
-    public partial class ManualForm : Form
+    public partial class EditPresetForm : Form
     {
-        public ManualForm()
+        private readonly PresetsForm Form;
+        private readonly PresetManager Manager;
+        public EditPresetForm(PresetsForm F, PresetManager M, string ID)
         {
             InitializeComponent();
+            Form = F;
+            Manager = M;
+
+            IDTextBox.Text = ID;
         }
 
-        private void QuitButton_Click(object sender, EventArgs e)
-        {
-            Close();
-            Dispose(true);
-        }
-
-        private void ChatButton_Click(object sender, EventArgs e)
+        private void DoneButton_Click(object sender, EventArgs e)
         {
             // Check if needed textboxes are filled
-            if(URLTextBox.Text == "" || NickTextBox.Text == "")
+            if (IDTextBox.Text == "" || URLTextBox.Text == "" || NickTextBox.Text == "")
             {
                 // Show the user a nice error when they aren't
                 MessageBox.Show(
-                    "You must specify a Webhook URL and a Name.",
-                    "EasyWH :: Error",
-                    MessageBoxButtons.OK
+                     "You must specify a unique Preset ID, a Webhook URL and a Name.",
+                     "EasyWH :: Error",
+                     MessageBoxButtons.OK
                 );
             }
             else
@@ -70,22 +70,27 @@ namespace EasyWHRewrite
                     );
                     return;
                 }
-                // Prepare the chat window
-                ChatForm C = new ChatForm();
-                // Set info for the Webhook
+                // Save preset
                 if (AvatarTextBox.Text == "")
-                {
-                    C.OpenWH(URLTextBox.Text, NickTextBox.Text);
-                }
+                    Manager.SavePreset(IDTextBox.Text, URLTextBox.Text, NickTextBox.Text);
                 else
-                {
-                    C.OpenWH(URLTextBox.Text, NickTextBox.Text, AvatarTextBox.Text);
-                }
-                // Show chat window and hide current window
-                C.Show();
-                C.Activate();
+                    Manager.SavePreset(IDTextBox.Text, URLTextBox.Text, NickTextBox.Text, AvatarTextBox.Text);
+                // Goodbye!
                 Hide();
+                // Tell the new presets form we're done
+                Form.Show();
+                Form.RefreshItems();
             }
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            // Goodbye!
+            Hide();
+            Dispose(true);
+            // Tell the new presets form we're done
+            Form.Show();
+            Form.RefreshItems();
         }
     }
 }

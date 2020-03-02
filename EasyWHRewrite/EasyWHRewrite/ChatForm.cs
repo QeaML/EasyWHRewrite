@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EasyWHRewrite
@@ -58,17 +52,30 @@ namespace EasyWHRewrite
         // `Send` button
         private void SendButton_Click(object sender, EventArgs e)
         {
-            if (ChatTextBox.Text.StartsWith("/"))
+            if (ChatTextBox.Text == "")
+                return;
+            try
             {
-                string C = ChatTextBox.Text.ToLower().Split(' ')[0].Remove(0, 1);
-                string[] A = ChatTextBox.Text.Split(' ').Skip(1).ToArray();
-                SetOutput(Cmd.Call(C, A));
+                if (ChatTextBox.Text.StartsWith("/"))
+                {
+                    string C = ChatTextBox.Text.ToLower().Split(' ')[0].Remove(0, 1);
+                    string[] A = ChatTextBox.Text.Split(' ').Skip(1).ToArray();
+                    SetOutput(Cmd.Call(C, A));
+                }
+                else
+                {
+                    SetOutput(WH.Talk(ChatTextBox.Text));
+                }
             }
-            else
+            catch(System.Net.WebException)
             {
-                SetOutput(WH.Talk(ChatTextBox.Text));
-                ChatTextBox.ResetText();
+                MessageBox.Show(
+                    "There was a problem sending the message.",
+                    "EasyWH :: Error",
+                    MessageBoxButtons.OK
+                );
             }
+            ChatTextBox.ResetText();
         }
     }
 }

@@ -23,6 +23,7 @@ Avatar: {3}";
 
         private void QuitButton_Click(object sender, EventArgs e)
         {
+            Dispose(true);
             Close();
         }
 
@@ -40,6 +41,8 @@ Avatar: {3}";
             }
             // tell the list we're done updating
             PresetList.EndUpdate();
+            // reset prest info text
+            PresetInfoLabel.Text = "Select a preset to see information about it here.";
         }
 
         private void PresetList_SelectedIndexChanged(object sender, EventArgs e)
@@ -50,6 +53,7 @@ Avatar: {3}";
                 // disable the `Use` and `Delete` buttons since nothing is selected
                 UseButton.Enabled = false;
                 DeleteButton.Enabled = false;
+                EditButton.Enabled = false;
                 // reset the preset info text
                 PresetInfoLabel.Text = "Select a preset to see information about it here.";
                 // and stop here
@@ -65,6 +69,7 @@ Avatar: {3}";
                 // disable the `Use` and `Delete` buttons since the preset doesn't exist
                 UseButton.Enabled = false;
                 DeleteButton.Enabled = false;
+                EditButton.Enabled = false;
                 // tell the user the preset doesn't exist
                 PresetInfoLabel.Text =
                     "This preset doesn't exist.";
@@ -76,6 +81,7 @@ Avatar: {3}";
                     // disable the `Use` and `Delete` buttons since the preset isn't usable
                     UseButton.Enabled = false;
                     DeleteButton.Enabled = false;
+                    EditButton.Enabled = false;
                     // tell the user the preset isn't usable
                     PresetInfoLabel.Text =
                         string.Format(
@@ -91,6 +97,7 @@ Avatar: {3}";
                 // enable the `Use` and `Delete` buttons since the preset exists
                 UseButton.Enabled = true;
                 DeleteButton.Enabled = true;
+                EditButton.Enabled = true;
                 // update the preset info text
                 PresetInfoLabel.Text =
                     string.Format(
@@ -117,9 +124,11 @@ Avatar: {3}";
             if(P == null)
             {
                 // show an error
-                ErrorForm R = new ErrorForm("PresetNotFound", "That preset has already been deleted.");
-                R.Show();
-                R.Activate();
+                MessageBox.Show(
+                    "That preset doesn't exist!",
+                    "EasyWH :: Error",
+                    MessageBoxButtons.OK
+                );
             }
             else
             {
@@ -136,7 +145,7 @@ Avatar: {3}";
             DialogResult D = 
                 MessageBox.Show(
                     "Are you sure you want to delete all your presets? (This is irreversible!)", 
-                    "EasyWH :: Are you sure?", 
+                    "EasyWH :: Confirmation", 
                     MessageBoxButtons.YesNo
                 );
             // check their decision
@@ -164,9 +173,11 @@ Avatar: {3}";
             if (P == null)
             {
                 // show an error
-                ErrorForm R = new ErrorForm("PresetNotFound", "That preset has already been deleted.");
-                R.Show();
-                R.Activate();
+                MessageBox.Show(
+                    "That preset doesn't exist!",
+                    "EasyWH :: Error",
+                    MessageBoxButtons.OK
+                );
             }
             else
             {
@@ -193,6 +204,33 @@ Avatar: {3}";
             NewPresetForm N = new NewPresetForm(this, M);
             N.Show();
             N.Activate();
+            Hide();
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            // get the selected preset
+            Preset P = M.GetPreset(PresetList.SelectedItems[0].Text);
+
+            // the preset manager returns `null` if the preset doesn't exist
+            if (P == null)
+            {
+                // show an error
+                MessageBox.Show(
+                    "That preset doesn't exist!",
+                    "EasyWH :: Error",
+                    MessageBoxButtons.OK
+                );
+            }
+            else
+            {
+                // initialize a edit window
+                EditPresetForm E = new EditPresetForm(this, M, P.ID);
+                // show the edit window
+                E.Show();
+                E.Activate();
+                Hide();
+            }
         }
     }
 }

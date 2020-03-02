@@ -39,6 +39,7 @@
             this.NewButton = new System.Windows.Forms.Button();
             this.QuitButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
+            this.EditButton = new System.Windows.Forms.Button();
             this.PresetInfoGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,7 +116,7 @@
             // 
             // NewButton
             // 
-            this.NewButton.Location = new System.Drawing.Point(235, 195);
+            this.NewButton.Location = new System.Drawing.Point(236, 224);
             this.NewButton.Name = "NewButton";
             this.NewButton.Size = new System.Drawing.Size(150, 23);
             this.NewButton.TabIndex = 6;
@@ -144,11 +145,23 @@
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
+            // EditButton
+            // 
+            this.EditButton.Enabled = false;
+            this.EditButton.Location = new System.Drawing.Point(236, 195);
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new System.Drawing.Size(150, 23);
+            this.EditButton.TabIndex = 9;
+            this.EditButton.Text = "Edit...";
+            this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
+            // 
             // PresetsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 457);
+            this.Controls.Add(this.EditButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.QuitButton);
             this.Controls.Add(this.NewButton);
@@ -183,5 +196,6 @@
         private System.Windows.Forms.Button NewButton;
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button EditButton;
     }
 }

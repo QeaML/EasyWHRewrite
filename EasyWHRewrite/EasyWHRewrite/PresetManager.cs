@@ -105,5 +105,10 @@ namespace EasyWHRewrite
         {
             File.Delete(GetPresetPath(ID));
         }
+
+        public bool PresetExists(string ID)
+        {
+            return File.Exists(GetPresetPath(ID));
+        }
     }
 }

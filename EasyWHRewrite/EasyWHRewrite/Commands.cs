@@ -65,6 +65,13 @@ namespace EasyWHRewrite
                     {
                         return WH.Talk("`" + string.Join(" ", Args) + "`");
                     }
+                case "whoami":
+                    return string.Format(
+                        "URL: {0}\nName: {1}\nAvatar: {2}",
+                        WH.URL,
+                        WH.Nick,
+                        WH.Avatar
+                    );
                 default:
                     return "err: Unknown command.";
             }
