@@ -25,6 +25,7 @@ Avatar: {3}";
         {
             Dispose(true);
             Close();
+            Environment.Exit(0);
         }
 
         public void RefreshItems()
@@ -54,6 +55,7 @@ Avatar: {3}";
                 UseButton.Enabled = false;
                 DeleteButton.Enabled = false;
                 EditButton.Enabled = false;
+                CloneButton.Enabled = false;
                 // reset the preset info text
                 PresetInfoLabel.Text = "Select a preset to see information about it here.";
                 // and stop here
@@ -70,6 +72,7 @@ Avatar: {3}";
                 UseButton.Enabled = false;
                 DeleteButton.Enabled = false;
                 EditButton.Enabled = false;
+                CloneButton.Enabled = false;
                 // tell the user the preset doesn't exist
                 PresetInfoLabel.Text =
                     "This preset doesn't exist.";
@@ -82,6 +85,7 @@ Avatar: {3}";
                     UseButton.Enabled = false;
                     DeleteButton.Enabled = false;
                     EditButton.Enabled = false;
+                    CloneButton.Enabled = false;
                     // tell the user the preset isn't usable
                     PresetInfoLabel.Text =
                         string.Format(
@@ -98,6 +102,7 @@ Avatar: {3}";
                 UseButton.Enabled = true;
                 DeleteButton.Enabled = true;
                 EditButton.Enabled = true;
+                CloneButton.Enabled = true;
                 // update the preset info text
                 PresetInfoLabel.Text =
                     string.Format(
@@ -184,13 +189,13 @@ Avatar: {3}";
                 // initialize a chat window
                 ChatForm C = new ChatForm();
                 // prepare the webhook
-                if(P.Avatar != null)
+                if (P.Avatar != null)
                 {
-                    C.OpenWH(P.URL, P.Nick);
+                    C.OpenWH(P.URL, P.Nick, P.Avatar);
                 }
                 else
                 {
-                    C.OpenWH(P.URL, P.Nick, P.Avatar);
+                    C.OpenWH(P.URL, P.Nick);
                 }
                 // show the chat window
                 C.Show();
@@ -231,6 +236,19 @@ Avatar: {3}";
                 E.Activate();
                 Hide();
             }
+        }
+
+        private void CloneButton_Click(object sender, EventArgs e)
+        {
+            // check if any items are selected
+            if (PresetList.SelectedItems.Count == 0)
+            {
+                // stop here
+                return;
+            }
+            ClonePresetForm C = new ClonePresetForm(this, M, PresetList.SelectedItems[0].Text);
+            C.Show();
+            C.Activate();
         }
     }
 }

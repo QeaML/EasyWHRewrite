@@ -16,10 +16,7 @@ namespace EasyWHRewrite
             URL = Doc.SelectSingleNode("/preset/url").InnerText;
             Nick = Doc.SelectSingleNode("/preset/nick").InnerText;
             XmlNode AvatarTmp = Doc.SelectSingleNode("/preset/avatar");
-            if (AvatarTmp != null)
-                Avatar = AvatarTmp.InnerText;
-            else
-                Avatar = null;
+            Avatar = AvatarTmp?.InnerText;
             Usable = Doc.SelectSingleNode("/preset/unusable") == null;
         }
 

@@ -15,6 +15,7 @@ namespace EasyWHRewrite
         {
             Close();
             Dispose(true);
+            Environment.Exit(0);
         }
 
         private void ChatButton_Click(object sender, EventArgs e)

@@ -5,7 +5,7 @@ namespace EasyWHRewrite
 {
     public partial class MainForm : Form
     {
-        public const string VERSION = "newbeta 2";
+        public const string VERSION = "newbeta 3";
         private int Pokes = 0;
         public MainForm()
         {
@@ -21,6 +21,7 @@ namespace EasyWHRewrite
         {
             Close();
             Dispose(true);
+            Environment.Exit(0);
         }
 
         private void ManualButton_Click(object sender, EventArgs e)

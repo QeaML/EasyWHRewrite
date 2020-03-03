@@ -47,6 +47,8 @@ namespace EasyWHRewrite
         private void QuitButton_Click(object sender, EventArgs e)
         {
             Close();
+            Dispose(true);
+            Environment.Exit(0);
         }
 
         // `Send` button

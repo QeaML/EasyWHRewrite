@@ -14,7 +14,12 @@ namespace EasyWHRewrite
             Form = F;
             Manager = M;
 
-            IDTextBox.Text = ID;
+            Preset P = Manager.GetPreset(ID);
+
+            IDTextBox.Text = P.ID;
+            URLTextBox.Text = P.URL;
+            NickTextBox.Text = P.Nick;
+            AvatarTextBox.Text = P.Avatar ?? "";
         }
 
         private void DoneButton_Click(object sender, EventArgs e)

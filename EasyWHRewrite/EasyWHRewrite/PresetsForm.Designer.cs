@@ -40,6 +40,7 @@
             this.QuitButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
+            this.CloneButton = new System.Windows.Forms.Button();
             this.PresetInfoGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,7 +117,7 @@
             // 
             // NewButton
             // 
-            this.NewButton.Location = new System.Drawing.Point(236, 224);
+            this.NewButton.Location = new System.Drawing.Point(235, 223);
             this.NewButton.Name = "NewButton";
             this.NewButton.Size = new System.Drawing.Size(150, 23);
             this.NewButton.TabIndex = 6;
@@ -137,7 +138,7 @@
             // DeleteButton
             // 
             this.DeleteButton.Enabled = false;
-            this.DeleteButton.Location = new System.Drawing.Point(236, 166);
+            this.DeleteButton.Location = new System.Drawing.Point(234, 252);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(150, 23);
             this.DeleteButton.TabIndex = 8;
@@ -148,7 +149,7 @@
             // EditButton
             // 
             this.EditButton.Enabled = false;
-            this.EditButton.Location = new System.Drawing.Point(236, 195);
+            this.EditButton.Location = new System.Drawing.Point(235, 194);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(150, 23);
             this.EditButton.TabIndex = 9;
@@ -156,11 +157,23 @@
             this.EditButton.UseVisualStyleBackColor = true;
             this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
+            // CloneButton
+            // 
+            this.CloneButton.Enabled = false;
+            this.CloneButton.Location = new System.Drawing.Point(236, 165);
+            this.CloneButton.Name = "CloneButton";
+            this.CloneButton.Size = new System.Drawing.Size(150, 23);
+            this.CloneButton.TabIndex = 10;
+            this.CloneButton.Text = "Clone...";
+            this.CloneButton.UseVisualStyleBackColor = true;
+            this.CloneButton.Click += new System.EventHandler(this.CloneButton_Click);
+            // 
             // PresetsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 457);
+            this.Controls.Add(this.CloneButton);
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.QuitButton);
@@ -197,5 +210,6 @@
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Button EditButton;
+        private System.Windows.Forms.Button CloneButton;
     }
 }
