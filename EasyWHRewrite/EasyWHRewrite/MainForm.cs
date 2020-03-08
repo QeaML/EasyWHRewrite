@@ -6,8 +6,8 @@ namespace EasyWHRewrite
 {
     public partial class MainForm : Form
     {
-        public const string VERSION = "newbeta 5";
-        public const int VERSIONNUM = 5;
+        public const string VERSION = "newbeta 6";
+        public const int VERSIONNUM = 6;
         private int Pokes = 0;
         public MainForm()
         {

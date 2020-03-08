@@ -17,7 +17,7 @@ namespace EasyWHRewrite
 
         private bool InvalidTextBox(TextBox T)
         {
-            return !(T.Text.Contains("<") || T.Text.Contains(">"));
+            return T.Text.Contains("<") || T.Text.Contains(">");
         }
 
         private void DoneButton_Click(object sender, EventArgs e)
