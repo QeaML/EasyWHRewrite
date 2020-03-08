@@ -22,6 +22,11 @@ namespace EasyWHRewrite
             AvatarTextBox.Text = P.Avatar ?? "";
         }
 
+        private bool InvalidTextBox(TextBox T)
+        {
+            return !(T.Text.Contains("<") || T.Text.Contains(">"));
+        }
+
         private void DoneButton_Click(object sender, EventArgs e)
         {
             // Check if needed textboxes are filled
@@ -33,59 +38,82 @@ namespace EasyWHRewrite
                      "EasyWH :: Error",
                      MessageBoxButtons.OK
                 );
+                return;
+            }
+            // check URL validity
+            try
+            {
+                new Uri(URLTextBox.Text);
+            }
+            catch (UriFormatException)
+            {
+                MessageBox.Show(
+                    "You must specify a valid Webhook URL.",
+                    "EasyWH :: Error",
+                    MessageBoxButtons.OK
+                );
+                return;
+            }
+            // check for invalid characters
+            if (AvatarTextBox.Text != "")
+            {
+                if (InvalidTextBox(URLTextBox) || InvalidTextBox(NickTextBox))
+                {
+                    MessageBox.Show(
+                        "The URL or Name contain invalid characters.",
+                        "EasyWH :: Error",
+                        MessageBoxButtons.OK
+                    );
+                    return;
+                }
             }
             else
             {
-                // check URL validity
-                try
-                {
-                    new Uri(URLTextBox.Text);
-                }
-                catch (UriFormatException)
+                if (InvalidTextBox(URLTextBox) || InvalidTextBox(NickTextBox) || InvalidTextBox(AvatarTextBox))
                 {
                     MessageBox.Show(
-                        "You must specify a valid Webhook URL.",
+                        "The URL, Name or Avatar URL contain invalid characters.",
                         "EasyWH :: Error",
                         MessageBoxButtons.OK
                     );
                     return;
                 }
-                // check URL reachability
-                bool URLReachable;
-                HttpWebRequest Req = (HttpWebRequest)WebRequest.Create(URLTextBox.Text);
-                Req.Timeout = 1000;
-                Req.Method = "HEAD";
-                try
-                {
-                    using (HttpWebResponse Res = (HttpWebResponse)Req.GetResponse())
-                    {
-                        URLReachable = Res.StatusCode == HttpStatusCode.OK;
-                    }
-                }
-                catch (WebException)
-                {
-                    URLReachable = false;
-                }
-                if (!URLReachable)
-                {
-                    MessageBox.Show(
-                        "The Webhook URL is unreachable.",
-                        "EasyWH :: Error",
-                        MessageBoxButtons.OK
-                    );
-                    return;
-                }
-                // Save preset
-                if (AvatarTextBox.Text == "")
-                    Manager.SavePreset(IDTextBox.Text, URLTextBox.Text, NickTextBox.Text);
-                else
-                    Manager.SavePreset(IDTextBox.Text, URLTextBox.Text, NickTextBox.Text, AvatarTextBox.Text);
-                // Goodbye!
-                Hide();
-                // Tell the new presets form we're done
-                Form.Show();
-                Form.RefreshItems();
             }
+            // check URL reachability
+            bool URLReachable;
+            HttpWebRequest Req = (HttpWebRequest)WebRequest.Create(URLTextBox.Text);
+            Req.Timeout = 1000;
+            Req.Method = "HEAD";
+            try
+            {
+                using (HttpWebResponse Res = (HttpWebResponse)Req.GetResponse())
+                {
+                    URLReachable = Res.StatusCode == HttpStatusCode.OK;
+                }
+            }
+            catch (WebException)
+            {
+                URLReachable = false;
+            }
+            if (!URLReachable)
+            {
+                MessageBox.Show(
+                    "The Webhook URL is unreachable.",
+                    "EasyWH :: Error",
+                    MessageBoxButtons.OK
+                );
+                return;
+            }
+            // Save preset
+            if (AvatarTextBox.Text == "")
+                Manager.SavePreset(IDTextBox.Text, URLTextBox.Text, NickTextBox.Text);
+            else
+                Manager.SavePreset(IDTextBox.Text, URLTextBox.Text, NickTextBox.Text, AvatarTextBox.Text);
+            // Goodbye!
+            Hide();
+            // Tell the new presets form we're done
+            Form.Show();
+            Form.RefreshItems();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

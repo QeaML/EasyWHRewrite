@@ -1,10 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace EasyWHRewrite
 {
     public partial class PresetsForm : Form
     {
+        private readonly FolderHelper H;
         private readonly PresetManager M;
         private const string PresetInfoTemplate =
 @"ID: {0}
@@ -13,10 +15,40 @@ Name: {2}
 Avatar: {3}";
         public PresetsForm()
         {
-            // initialize the window
-            InitializeComponent();
             // initialize the preset manager
             M = new PresetManager();
+            // initialize the folder helper
+            H = new FolderHelper();
+            // check if old-style presets exist
+            if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WebhookPresets")))
+            {
+                DialogResult D = MessageBox.Show(
+                    "Old format presets have been detected, would you like to move them to the new format?",
+                    "EasyWH :: Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+                if (D == DialogResult.Yes)
+                {
+                    string OldPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WebhookPresets");
+                    foreach (string F in Directory.EnumerateFiles(OldPath))
+                    {
+                        if (!File.Exists(H.GetPath("Presets", Path.GetFileName(F))))
+                        {
+                            File.Move(F, H.GetPath("Presets", Path.GetFileName(F)));
+                        }
+                    }
+                    File.Delete(Path.Combine(OldPath, "Example.xml"));
+                    Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WebhookPresets"));
+                    MessageBox.Show(
+                        "The presets have been migrated successfully.",
+                        "EasyWH :: Success",
+                        MessageBoxButtons.OK
+                    );
+                }
+            }
+            // initialize the window
+            InitializeComponent();
             // refresh the list
             RefreshItems();
         }
@@ -62,11 +94,40 @@ Avatar: {3}";
                 return;
             }
 
-            // get selected preset
-            Preset P = M.GetPreset(PresetList.SelectedItems[0].Text);
+            Preset P;
+
+            try
+            {
+                // get selected preset
+                P = M.GetPreset(PresetList.SelectedItems[0].Text);
+            } 
+            catch (System.Xml.XmlException)
+            {
+                DialogResult D = MessageBox.Show(
+                    "There was a problem while loading this preset. Do you wish to remove it?",
+                    "EasyWH :: Error",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Exclamation
+                );
+                if (D == DialogResult.Yes)
+                {
+                    M.DeletePreset(PresetList.SelectedItems[0].Text);
+                }
+                else
+                {
+                    // disable the `Use` and `Delete`
+                    UseButton.Enabled = false;
+                    DeleteButton.Enabled = false;
+                    EditButton.Enabled = false;
+                    CloneButton.Enabled = false;
+                    // reset the preset info text
+                    PresetInfoLabel.Text = "This preset isn't usable."; 
+                }
+                return;
+            }
 
             // check if it exists
-            if(P == null)
+            if (P == null)
             {
                 // disable the `Use` and `Delete` buttons since the preset doesn't exist
                 UseButton.Enabled = false;

@@ -15,6 +15,11 @@ namespace EasyWHRewrite
             Manager = M;
         }
 
+        private bool InvalidTextBox(TextBox T)
+        {
+            return !(T.Text.Contains("<") || T.Text.Contains(">"));
+        }
+
         private void DoneButton_Click(object sender, EventArgs e)
         {
             // Check if needed textboxes are filled
@@ -28,8 +33,33 @@ namespace EasyWHRewrite
                 );
                 return;
             }
+            // check for invalid characters
+            if (AvatarTextBox.Text != "")
+                {
+                    if (InvalidTextBox(URLTextBox) || InvalidTextBox(NickTextBox))
+                    {
+                        MessageBox.Show(
+                            "The URL or Name contain invalid characters.",
+                            "EasyWH :: Error",
+                            MessageBoxButtons.OK
+                        );
+                        return;
+                    }
+                }
+                else
+                {
+                    if (InvalidTextBox(URLTextBox) || InvalidTextBox(NickTextBox) || InvalidTextBox(AvatarTextBox))
+                    {
+                        MessageBox.Show(
+                            "The URL, Name or Avatar URL contain invalid characters.",
+                            "EasyWH :: Error",
+                            MessageBoxButtons.OK
+                        );
+                        return;
+                    }
+                }
             // check if preset already exists
-            if(Manager.PresetExists(IDTextBox.Text))
+            if (Manager.PresetExists(IDTextBox.Text))
             {
                 MessageBox.Show(
                     "That preset already exists.",

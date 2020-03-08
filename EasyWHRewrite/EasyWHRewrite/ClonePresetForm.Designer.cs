@@ -94,7 +94,7 @@
 
         private System.Windows.Forms.TextBox IDTextBox;
         private System.Windows.Forms.Label IDLabel;
-        private System.Windows.Forms.Button CancelButton;
+        private new System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button DoneButton;
     }
 }

@@ -7,7 +7,7 @@ namespace EasyWHRewrite
 {
     public class PresetManager
     {
-        private readonly string Folder;
+        private readonly FolderHelper Helper;
         private const string PresetTemplate =
 @"<preset>
     <url>{0}</url>
@@ -29,13 +29,13 @@ namespace EasyWHRewrite
 
         public PresetManager()
         {
-            Folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WebhookPresets");
+            Helper = new FolderHelper();
             WritePresetFile("Example", ExamplePreset);
         }
 
         private string GetPresetPath(string ID)
         {
-            return Path.Combine(Folder, ID+".xml");
+            return Helper.GetPath("Presets", ID+".xml");
         }
 
         private string MakePresetXML(string URL, string Nick, string Avatar)
@@ -59,9 +59,9 @@ namespace EasyWHRewrite
 
         private void WritePresetFile(string ID, string XML)
         {
-            if(!Directory.Exists(Folder))
+            if(!Helper.CheckFolder("Presets"))
             {
-                Directory.CreateDirectory(Folder);
+                Helper.CreateFolder("Presets");
             }
             File.WriteAllText(GetPresetPath(ID), XML);
         }
@@ -69,7 +69,7 @@ namespace EasyWHRewrite
         public List<string> GetPresetList()
         {
             List<string> Presets = new List<string>();
-            foreach (string P in Directory.EnumerateFiles(Folder))
+            foreach (string P in Directory.EnumerateFiles(Helper.GetPath("Presets")))
             {
                 string[] T = P.Split(Path.DirectorySeparatorChar);
                 Presets.Add(T[T.Length - 1].Split('.')[0]);

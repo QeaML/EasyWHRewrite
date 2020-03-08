@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.LogoLabel = new System.Windows.Forms.Label();
             this.LogoSubtextLabel = new System.Windows.Forms.Label();
             this.SloganLabel = new System.Windows.Forms.Label();
@@ -134,9 +135,9 @@
             this.Controls.Add(this.LogoSubtextLabel);
             this.Controls.Add(this.LogoLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.ShowIcon = false;
             this.Text = "EasyWH";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.LoginMethodsGroup.ResumeLayout(false);

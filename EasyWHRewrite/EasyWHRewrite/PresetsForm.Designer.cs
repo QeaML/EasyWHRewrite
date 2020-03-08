@@ -50,6 +50,7 @@
             this.ID});
             this.PresetList.HideSelection = false;
             this.PresetList.Location = new System.Drawing.Point(12, 29);
+            this.PresetList.MultiSelect = false;
             this.PresetList.Name = "PresetList";
             this.PresetList.Size = new System.Drawing.Size(217, 416);
             this.PresetList.TabIndex = 0;

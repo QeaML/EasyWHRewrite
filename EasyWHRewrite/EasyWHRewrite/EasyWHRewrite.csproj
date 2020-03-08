@@ -105,6 +105,7 @@
     <Compile Include="EditPresetForm.Designer.cs">
       <DependentUpon>EditPresetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FolderHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

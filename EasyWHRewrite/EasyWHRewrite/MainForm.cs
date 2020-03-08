@@ -1,14 +1,63 @@
 ﻿using System;
 using System.Windows.Forms;
+using ServiceStack;
 
 namespace EasyWHRewrite
 {
     public partial class MainForm : Form
     {
-        public const string VERSION = "newbeta 3";
+        public const string VERSION = "newbeta 4";
+        public const int VERSIONNUM = 4;
         private int Pokes = 0;
         public MainForm()
         {
+            string NewestVersionString;
+            try
+            {
+                NewestVersionString = "https://github.com/QeaML/EasyWHRewrite/blob/master/VERSION".GetStringFromUrl();
+
+                if (NewestVersionString != null)
+                {
+                    int NewestVersionInt = int.Parse(NewestVersionString);
+                    if (NewestVersionInt > VERSIONNUM)
+                    {
+                        MessageBox.Show(
+                            "Your version of EasyWH is out-of-date!",
+                            "EasyWH :: Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                    }
+                    else if (NewestVersionInt < VERSIONNUM)
+                    {
+                        MessageBox.Show(
+                            "Your version of EasyWH may be an in-development build. (version number is higher than on GitHub)",
+                            "EasyWH :: Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Could not check for updates.",
+                        "EasyWH :: Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+            catch (System.Net.WebException)
+            {
+                MessageBox.Show(
+                    "Could not check for updates.",
+                    "EasyWH :: Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+
             InitializeComponent();
         }
 
