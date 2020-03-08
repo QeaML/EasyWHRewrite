@@ -6,15 +6,15 @@ namespace EasyWHRewrite
 {
     public partial class MainForm : Form
     {
-        public const string VERSION = "newbeta 4";
-        public const int VERSIONNUM = 4;
+        public const string VERSION = "newbeta 5";
+        public const int VERSIONNUM = 5;
         private int Pokes = 0;
         public MainForm()
         {
             string NewestVersionString;
             try
             {
-                NewestVersionString = "https://github.com/QeaML/EasyWHRewrite/blob/master/VERSION".GetStringFromUrl();
+                NewestVersionString = "https://raw.githubusercontent.com/QeaML/EasyWHRewrite/master/VERSION".GetStringFromUrl();
 
                 if (NewestVersionString != null)
                 {
