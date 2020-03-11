@@ -6,11 +6,26 @@ namespace EasyWHRewrite
 {
     public partial class MainForm : Form
     {
-        public const string VERSION = "newbeta 6";
-        public const int VERSIONNUM = 6;
+        public const string VERSION = "newbeta 7";
+        public const int VERSIONNUM = 7;
         private int Pokes = 0;
         public MainForm()
         {
+            InitializeComponent();
+        }
+        public MainForm(bool CheckForUpdate)
+        {
+            InitializeComponent();
+            if (CheckForUpdate)
+            {
+                UpdateCheck();
+            }
+        }
+
+        private void UpdateCheck()
+        {
+            //UpdateLabel.Text = "Checking for updates...";
+
             string NewestVersionString;
             try
             {
@@ -27,6 +42,7 @@ namespace EasyWHRewrite
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning
                         );
+                        UpdateLabel.Text = "This version is out-of-date!";
                     }
                     else if (NewestVersionInt < VERSIONNUM)
                     {
@@ -36,6 +52,11 @@ namespace EasyWHRewrite
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning
                         );
+                        UpdateLabel.Text = "This version may be an in-development build.";
+                    }
+                    else
+                    {
+                        UpdateLabel.Text = "This version is up to date!";
                     }
                 }
                 else
@@ -57,8 +78,6 @@ namespace EasyWHRewrite
                     MessageBoxIcon.Error
                 );
             }
-
-            InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -66,10 +85,8 @@ namespace EasyWHRewrite
             VersionLabel.Text = VERSION;
         }
 
-        private void QuitButton_Click(object sender, EventArgs e)
+        private void OnFormClosed(object sender, EventArgs e)
         {
-            Close();
-            Dispose(true);
             Environment.Exit(0);
         }
 
@@ -131,12 +148,41 @@ namespace EasyWHRewrite
                 case 10:
                     MessageBox.Show("I SAID STOP.");
                     break;
+                case 25:
+                    MessageBox.Show("wow, ok. keep going.");
+                    break;
+                case 50:
+                    MessageBox.Show("you're doing alright. keep going.");
+                    break;
+                case 100:
+                    MessageBox.Show("you're impressing me... keep going...");
+                    break;
+                case 199:
+                    MessageBox.Show("listen,,, the random chimp event will happen on...");
+                    break;
+                case 200:
+                    Environment.Exit(0);
+                    break;
                 default:
                     MessageBox.Show("You don't wanna stop? OK.");
                     break;
             }
             #endregion
             Pokes++;
+        }
+
+        private void UpdateLabel_Click(object sender, EventArgs e)
+        {
+            UpdateCheck();
+        }
+
+        private void AboutButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Visit https://github.com/qeaml/EasyWHRewrite for more information.",
+                "EasyWH :: Help",
+                MessageBoxButtons.OK
+            );
         }
     }
 }

@@ -33,7 +33,8 @@ namespace EasyWHRewrite
             //}
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            MainForm M = new MainForm(true);
+            Application.Run(M);
         }
     }
 }

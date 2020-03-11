@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using ServiceStack;
 
 namespace EasyWHRewrite
 {
@@ -53,13 +54,6 @@ Avatar: {3}";
             RefreshItems();
         }
 
-        private void QuitButton_Click(object sender, EventArgs e)
-        {
-            Dispose(true);
-            Close();
-            Environment.Exit(0);
-        }
-
         public void RefreshItems()
         {
             // tell the list we're updating it
@@ -78,6 +72,32 @@ Avatar: {3}";
             PresetInfoLabel.Text = "Select a preset to see information about it here.";
         }
 
+        private void RefreshAvatarPreview(Preset P)
+        {
+            try
+            {
+                byte[] AvatarData = P.Avatar.GetBytesFromUrl();
+                using (Stream AvatarStream = new MemoryStream())
+                {
+                    AvatarStream.Write(AvatarData, 0, AvatarData.Length);
+                    AvatarPreview.Image = new System.Drawing.Bitmap(AvatarStream);
+                }
+            }
+            catch (UriFormatException)
+            {
+                return;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show("could not load avatar preview: " + Ex.ToString());
+            }
+        }
+
+        private void RefreshAvatarPreview()
+        {
+            AvatarPreview.Image = null;
+        }
+
         private void PresetList_SelectedIndexChanged(object sender, EventArgs e)
         {
             // check if any items are selected
@@ -90,6 +110,7 @@ Avatar: {3}";
                 CloneButton.Enabled = false;
                 // reset the preset info text
                 PresetInfoLabel.Text = "Select a preset to see information about it here.";
+                RefreshAvatarPreview();
                 // and stop here
                 return;
             }
@@ -173,6 +194,8 @@ Avatar: {3}";
                         P.Nick,
                         P.Avatar
                     );
+                if (P.Avatar != null && P.Avatar != "")
+                    RefreshAvatarPreview(P);
             }
         }
 
@@ -183,6 +206,14 @@ Avatar: {3}";
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
+            // ask for confirmation
+            DialogResult D = MessageBox.Show(
+                "Are you sure you want to delete this preset? (This is irreversible!)",
+                "EasyWH :: Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+            if (D == DialogResult.No) return;
             // get the selected preset
             Preset P = M.GetPreset(PresetList.SelectedItems[0].Text);
 
@@ -210,9 +241,10 @@ Avatar: {3}";
             // ask the user if they're sure
             DialogResult D = 
                 MessageBox.Show(
-                    "Are you sure you want to delete all your presets? (This is irreversible!)", 
+                    "Are you sure you want to delete ALL your presets? (This is irreversible!)", 
                     "EasyWH :: Confirmation", 
-                    MessageBoxButtons.YesNo
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
                 );
             // check their decision
             if (D == DialogResult.Yes)
@@ -310,6 +342,19 @@ Avatar: {3}";
             ClonePresetForm C = new ClonePresetForm(this, M, PresetList.SelectedItems[0].Text);
             C.Show();
             C.Activate();
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            MainForm M = new MainForm();
+            M.Show();
+            M.Activate();
+            Hide();
+        }
+
+        private void OnFormClosed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

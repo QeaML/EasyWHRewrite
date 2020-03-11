@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManualForm));
             this.URLLabel = new System.Windows.Forms.Label();
             this.URLTextBox = new System.Windows.Forms.TextBox();
             this.NickTextBox = new System.Windows.Forms.TextBox();
@@ -35,7 +36,7 @@
             this.AvatarLabel = new System.Windows.Forms.Label();
             this.AvatarTextBox = new System.Windows.Forms.TextBox();
             this.ChatButton = new System.Windows.Forms.Button();
-            this.QuitButton = new System.Windows.Forms.Button();
+            this.BackButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // URLLabel
@@ -88,6 +89,7 @@
             // 
             // ChatButton
             // 
+            this.ChatButton.ForeColor = System.Drawing.Color.Black;
             this.ChatButton.Location = new System.Drawing.Point(12, 136);
             this.ChatButton.Name = "ChatButton";
             this.ChatButton.Size = new System.Drawing.Size(163, 23);
@@ -96,22 +98,24 @@
             this.ChatButton.UseVisualStyleBackColor = true;
             this.ChatButton.Click += new System.EventHandler(this.ChatButton_Click);
             // 
-            // QuitButton
+            // BackButton
             // 
-            this.QuitButton.Location = new System.Drawing.Point(12, 166);
-            this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(163, 23);
-            this.QuitButton.TabIndex = 7;
-            this.QuitButton.Text = "Quit";
-            this.QuitButton.UseVisualStyleBackColor = true;
-            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
+            this.BackButton.ForeColor = System.Drawing.Color.Black;
+            this.BackButton.Location = new System.Drawing.Point(12, 166);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(163, 23);
+            this.BackButton.TabIndex = 7;
+            this.BackButton.Text = "Back";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // ManualForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.ClientSize = new System.Drawing.Size(187, 200);
-            this.Controls.Add(this.QuitButton);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.ChatButton);
             this.Controls.Add(this.AvatarTextBox);
             this.Controls.Add(this.AvatarLabel);
@@ -119,11 +123,14 @@
             this.Controls.Add(this.NickTextBox);
             this.Controls.Add(this.URLTextBox);
             this.Controls.Add(this.URLLabel);
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ManualForm";
-            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EasyWH :: Manual Log-in";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,6 +145,6 @@
         private System.Windows.Forms.Label AvatarLabel;
         private System.Windows.Forms.TextBox AvatarTextBox;
         private System.Windows.Forms.Button ChatButton;
-        private System.Windows.Forms.Button QuitButton;
+        private System.Windows.Forms.Button BackButton;
     }
 }

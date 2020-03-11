@@ -11,10 +11,8 @@ namespace EasyWHRewrite
             InitializeComponent();
         }
 
-        private void QuitButton_Click(object sender, EventArgs e)
+        private void OnFormClosed(object sender, EventArgs e)
         {
-            Close();
-            Dispose(true);
             Environment.Exit(0);
         }
 
@@ -114,6 +112,14 @@ namespace EasyWHRewrite
             // Show chat window and hide current window
             C.Show();
             C.Activate();
+            Hide();
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            MainForm M = new MainForm();
+            M.Show();
+            M.Activate();
             Hide();
         }
     }

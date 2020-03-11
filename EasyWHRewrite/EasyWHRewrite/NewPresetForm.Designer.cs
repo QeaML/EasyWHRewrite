@@ -144,6 +144,7 @@
             this.MinimizeBox = false;
             this.Name = "NewPresetForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EasyWH :: New Preset";
             this.ResumeLayout(false);
             this.PerformLayout();

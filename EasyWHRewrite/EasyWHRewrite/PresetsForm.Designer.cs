@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PresetsForm));
             this.PresetList = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PresetLabel = new System.Windows.Forms.Label();
@@ -37,11 +38,15 @@
             this.DeleteAllButton = new System.Windows.Forms.Button();
             this.UseButton = new System.Windows.Forms.Button();
             this.NewButton = new System.Windows.Forms.Button();
-            this.QuitButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
             this.CloneButton = new System.Windows.Forms.Button();
+            this.BackButton = new System.Windows.Forms.Button();
+            this.AvatarPreviewGroup = new System.Windows.Forms.GroupBox();
+            this.AvatarPreview = new System.Windows.Forms.PictureBox();
             this.PresetInfoGroup.SuspendLayout();
+            this.AvatarPreviewGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AvatarPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // PresetList
@@ -69,16 +74,17 @@
             // PresetInfoGroup
             // 
             this.PresetInfoGroup.Controls.Add(this.PresetInfoLabel);
+            this.PresetInfoGroup.ForeColor = System.Drawing.Color.White;
             this.PresetInfoGroup.Location = new System.Drawing.Point(236, 29);
             this.PresetInfoGroup.Name = "PresetInfoGroup";
-            this.PresetInfoGroup.Size = new System.Drawing.Size(284, 100);
+            this.PresetInfoGroup.Size = new System.Drawing.Size(306, 100);
             this.PresetInfoGroup.TabIndex = 2;
             this.PresetInfoGroup.TabStop = false;
             this.PresetInfoGroup.Text = "Preset Info";
             // 
             // PresetInfoLabel
             // 
-            this.PresetInfoLabel.AutoSize = true;
+            this.PresetInfoLabel.AutoEllipsis = true;
             this.PresetInfoLabel.Location = new System.Drawing.Point(7, 20);
             this.PresetInfoLabel.Name = "PresetInfoLabel";
             this.PresetInfoLabel.Size = new System.Drawing.Size(229, 13);
@@ -87,7 +93,8 @@
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Location = new System.Drawing.Point(235, 393);
+            this.RefreshButton.ForeColor = System.Drawing.Color.Black;
+            this.RefreshButton.Location = new System.Drawing.Point(236, 422);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(150, 23);
             this.RefreshButton.TabIndex = 3;
@@ -97,7 +104,8 @@
             // 
             // DeleteAllButton
             // 
-            this.DeleteAllButton.Location = new System.Drawing.Point(235, 364);
+            this.DeleteAllButton.ForeColor = System.Drawing.Color.Black;
+            this.DeleteAllButton.Location = new System.Drawing.Point(235, 194);
             this.DeleteAllButton.Name = "DeleteAllButton";
             this.DeleteAllButton.Size = new System.Drawing.Size(150, 23);
             this.DeleteAllButton.TabIndex = 4;
@@ -108,6 +116,7 @@
             // UseButton
             // 
             this.UseButton.Enabled = false;
+            this.UseButton.ForeColor = System.Drawing.Color.Black;
             this.UseButton.Location = new System.Drawing.Point(236, 136);
             this.UseButton.Name = "UseButton";
             this.UseButton.Size = new System.Drawing.Size(150, 23);
@@ -118,7 +127,8 @@
             // 
             // NewButton
             // 
-            this.NewButton.Location = new System.Drawing.Point(235, 223);
+            this.NewButton.ForeColor = System.Drawing.Color.Black;
+            this.NewButton.Location = new System.Drawing.Point(392, 165);
             this.NewButton.Name = "NewButton";
             this.NewButton.Size = new System.Drawing.Size(150, 23);
             this.NewButton.TabIndex = 6;
@@ -126,20 +136,11 @@
             this.NewButton.UseVisualStyleBackColor = true;
             this.NewButton.Click += new System.EventHandler(this.NewButton_Click);
             // 
-            // QuitButton
-            // 
-            this.QuitButton.Location = new System.Drawing.Point(235, 422);
-            this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(150, 23);
-            this.QuitButton.TabIndex = 7;
-            this.QuitButton.Text = "Quit";
-            this.QuitButton.UseVisualStyleBackColor = true;
-            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
-            // 
             // DeleteButton
             // 
             this.DeleteButton.Enabled = false;
-            this.DeleteButton.Location = new System.Drawing.Point(234, 252);
+            this.DeleteButton.ForeColor = System.Drawing.Color.Black;
+            this.DeleteButton.Location = new System.Drawing.Point(392, 194);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(150, 23);
             this.DeleteButton.TabIndex = 8;
@@ -150,7 +151,8 @@
             // EditButton
             // 
             this.EditButton.Enabled = false;
-            this.EditButton.Location = new System.Drawing.Point(235, 194);
+            this.EditButton.ForeColor = System.Drawing.Color.Black;
+            this.EditButton.Location = new System.Drawing.Point(236, 165);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(150, 23);
             this.EditButton.TabIndex = 9;
@@ -161,7 +163,8 @@
             // CloneButton
             // 
             this.CloneButton.Enabled = false;
-            this.CloneButton.Location = new System.Drawing.Point(236, 165);
+            this.CloneButton.ForeColor = System.Drawing.Color.Black;
+            this.CloneButton.Location = new System.Drawing.Point(392, 136);
             this.CloneButton.Name = "CloneButton";
             this.CloneButton.Size = new System.Drawing.Size(150, 23);
             this.CloneButton.TabIndex = 10;
@@ -169,15 +172,48 @@
             this.CloneButton.UseVisualStyleBackColor = true;
             this.CloneButton.Click += new System.EventHandler(this.CloneButton_Click);
             // 
+            // BackButton
+            // 
+            this.BackButton.ForeColor = System.Drawing.Color.Black;
+            this.BackButton.Location = new System.Drawing.Point(392, 422);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(150, 23);
+            this.BackButton.TabIndex = 11;
+            this.BackButton.Text = "Back";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // AvatarPreviewGroup
+            // 
+            this.AvatarPreviewGroup.Controls.Add(this.AvatarPreview);
+            this.AvatarPreviewGroup.ForeColor = System.Drawing.Color.White;
+            this.AvatarPreviewGroup.Location = new System.Drawing.Point(236, 224);
+            this.AvatarPreviewGroup.Name = "AvatarPreviewGroup";
+            this.AvatarPreviewGroup.Size = new System.Drawing.Size(306, 192);
+            this.AvatarPreviewGroup.TabIndex = 12;
+            this.AvatarPreviewGroup.TabStop = false;
+            this.AvatarPreviewGroup.Text = "Avatar Preview";
+            // 
+            // AvatarPreview
+            // 
+            this.AvatarPreview.Location = new System.Drawing.Point(6, 19);
+            this.AvatarPreview.Name = "AvatarPreview";
+            this.AvatarPreview.Size = new System.Drawing.Size(294, 167);
+            this.AvatarPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.AvatarPreview.TabIndex = 0;
+            this.AvatarPreview.TabStop = false;
+            // 
             // PresetsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 457);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.ClientSize = new System.Drawing.Size(548, 457);
+            this.Controls.Add(this.AvatarPreviewGroup);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.CloneButton);
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.DeleteButton);
-            this.Controls.Add(this.QuitButton);
             this.Controls.Add(this.NewButton);
             this.Controls.Add(this.UseButton);
             this.Controls.Add(this.DeleteAllButton);
@@ -185,13 +221,17 @@
             this.Controls.Add(this.PresetInfoGroup);
             this.Controls.Add(this.PresetLabel);
             this.Controls.Add(this.PresetList);
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "PresetsForm";
-            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EasyWH :: Presets";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.PresetInfoGroup.ResumeLayout(false);
-            this.PresetInfoGroup.PerformLayout();
+            this.AvatarPreviewGroup.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AvatarPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,9 +248,11 @@
         private System.Windows.Forms.Button DeleteAllButton;
         private System.Windows.Forms.Button UseButton;
         private System.Windows.Forms.Button NewButton;
-        private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Button EditButton;
         private System.Windows.Forms.Button CloneButton;
+        private System.Windows.Forms.Button BackButton;
+        private System.Windows.Forms.GroupBox AvatarPreviewGroup;
+        private System.Windows.Forms.PictureBox AvatarPreview;
     }
 }

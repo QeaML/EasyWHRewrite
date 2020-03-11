@@ -31,20 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.LogoLabel = new System.Windows.Forms.Label();
             this.LogoSubtextLabel = new System.Windows.Forms.Label();
-            this.SloganLabel = new System.Windows.Forms.Label();
-            this.LoginMethodsGroup = new System.Windows.Forms.GroupBox();
-            this.PresetsButton = new System.Windows.Forms.Button();
-            this.ManualButton = new System.Windows.Forms.Button();
-            this.QuitButton = new System.Windows.Forms.Button();
             this.VersionLabel = new System.Windows.Forms.Label();
-            this.LoginMethodsGroup.SuspendLayout();
+            this.Settings = new System.Windows.Forms.Button();
+            this.ManualButton = new System.Windows.Forms.Button();
+            this.PresetsButton = new System.Windows.Forms.Button();
+            this.UpdateLabel = new System.Windows.Forms.Label();
+            this.AboutButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LogoLabel
             // 
             this.LogoLabel.AutoSize = true;
             this.LogoLabel.Font = new System.Drawing.Font("Segoe UI Light", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LogoLabel.Location = new System.Drawing.Point(13, 13);
+            this.LogoLabel.Location = new System.Drawing.Point(-5, 1);
             this.LogoLabel.Name = "LogoLabel";
             this.LogoLabel.Size = new System.Drawing.Size(382, 128);
             this.LogoLabel.TabIndex = 0;
@@ -56,91 +55,100 @@
             this.LogoSubtextLabel.AutoSize = true;
             this.LogoSubtextLabel.BackColor = System.Drawing.Color.Transparent;
             this.LogoSubtextLabel.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LogoSubtextLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.LogoSubtextLabel.Location = new System.Drawing.Point(356, 42);
+            this.LogoSubtextLabel.ForeColor = System.Drawing.Color.White;
+            this.LogoSubtextLabel.Location = new System.Drawing.Point(257, 107);
             this.LogoSubtextLabel.Name = "LogoSubtextLabel";
             this.LogoSubtextLabel.Size = new System.Drawing.Size(88, 25);
             this.LogoSubtextLabel.TabIndex = 1;
             this.LogoSubtextLabel.Text = "Rewritten";
             // 
-            // SloganLabel
+            // VersionLabel
             // 
-            this.SloganLabel.AutoSize = true;
-            this.SloganLabel.Font = new System.Drawing.Font("Segoe UI Light", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SloganLabel.Location = new System.Drawing.Point(28, 141);
-            this.SloganLabel.Name = "SloganLabel";
-            this.SloganLabel.Size = new System.Drawing.Size(323, 40);
-            this.SloganLabel.TabIndex = 2;
-            this.SloganLabel.Text = "Discord webhooks, easier.";
+            this.VersionLabel.AutoSize = true;
+            this.VersionLabel.Location = new System.Drawing.Point(17, 116);
+            this.VersionLabel.Name = "VersionLabel";
+            this.VersionLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.VersionLabel.Size = new System.Drawing.Size(117, 13);
+            this.VersionLabel.TabIndex = 5;
+            this.VersionLabel.Text = "(this is placeholder text)";
             // 
-            // LoginMethodsGroup
+            // Settings
             // 
-            this.LoginMethodsGroup.Controls.Add(this.PresetsButton);
-            this.LoginMethodsGroup.Controls.Add(this.ManualButton);
-            this.LoginMethodsGroup.Location = new System.Drawing.Point(35, 185);
-            this.LoginMethodsGroup.Name = "LoginMethodsGroup";
-            this.LoginMethodsGroup.Size = new System.Drawing.Size(399, 53);
-            this.LoginMethodsGroup.TabIndex = 3;
-            this.LoginMethodsGroup.TabStop = false;
-            this.LoginMethodsGroup.Text = "Login Methods";
-            // 
-            // PresetsButton
-            // 
-            this.PresetsButton.Location = new System.Drawing.Point(203, 19);
-            this.PresetsButton.Name = "PresetsButton";
-            this.PresetsButton.Size = new System.Drawing.Size(190, 25);
-            this.PresetsButton.TabIndex = 1;
-            this.PresetsButton.Text = "Presets";
-            this.PresetsButton.UseVisualStyleBackColor = true;
-            this.PresetsButton.Click += new System.EventHandler(this.PresetsButton_Click);
+            this.Settings.Enabled = false;
+            this.Settings.ForeColor = System.Drawing.Color.Black;
+            this.Settings.Location = new System.Drawing.Point(17, 210);
+            this.Settings.Name = "Settings";
+            this.Settings.Size = new System.Drawing.Size(328, 25);
+            this.Settings.TabIndex = 6;
+            this.Settings.Text = "Settings";
+            this.Settings.UseVisualStyleBackColor = true;
             // 
             // ManualButton
             // 
-            this.ManualButton.Location = new System.Drawing.Point(6, 19);
+            this.ManualButton.ForeColor = System.Drawing.Color.Black;
+            this.ManualButton.Location = new System.Drawing.Point(17, 148);
             this.ManualButton.Name = "ManualButton";
-            this.ManualButton.Size = new System.Drawing.Size(190, 25);
+            this.ManualButton.Size = new System.Drawing.Size(328, 25);
             this.ManualButton.TabIndex = 0;
             this.ManualButton.Text = "Manual";
             this.ManualButton.UseVisualStyleBackColor = true;
             this.ManualButton.Click += new System.EventHandler(this.ManualButton_Click);
             // 
-            // QuitButton
+            // PresetsButton
             // 
-            this.QuitButton.Location = new System.Drawing.Point(392, 266);
-            this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(75, 23);
-            this.QuitButton.TabIndex = 4;
-            this.QuitButton.Text = "Quit";
-            this.QuitButton.UseVisualStyleBackColor = true;
-            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
+            this.PresetsButton.ForeColor = System.Drawing.Color.Black;
+            this.PresetsButton.Location = new System.Drawing.Point(17, 179);
+            this.PresetsButton.Name = "PresetsButton";
+            this.PresetsButton.Size = new System.Drawing.Size(328, 25);
+            this.PresetsButton.TabIndex = 1;
+            this.PresetsButton.Text = "Presets";
+            this.PresetsButton.UseVisualStyleBackColor = true;
+            this.PresetsButton.Click += new System.EventHandler(this.PresetsButton_Click);
             // 
-            // VersionLabel
+            // UpdateLabel
             // 
-            this.VersionLabel.AutoSize = true;
-            this.VersionLabel.Location = new System.Drawing.Point(316, 128);
-            this.VersionLabel.Name = "VersionLabel";
-            this.VersionLabel.Size = new System.Drawing.Size(80, 13);
-            this.VersionLabel.TabIndex = 5;
-            this.VersionLabel.Text = "<VersionLabel>";
+            this.UpdateLabel.AutoSize = true;
+            this.UpdateLabel.Location = new System.Drawing.Point(12, 238);
+            this.UpdateLabel.Name = "UpdateLabel";
+            this.UpdateLabel.Size = new System.Drawing.Size(117, 13);
+            this.UpdateLabel.TabIndex = 7;
+            this.UpdateLabel.Text = "(this is placeholder text)";
+            this.UpdateLabel.Click += new System.EventHandler(this.UpdateLabel_Click);
+            // 
+            // AboutButton
+            // 
+            this.AboutButton.ForeColor = System.Drawing.Color.Black;
+            this.AboutButton.Location = new System.Drawing.Point(325, 12);
+            this.AboutButton.Name = "AboutButton";
+            this.AboutButton.Size = new System.Drawing.Size(20, 20);
+            this.AboutButton.TabIndex = 8;
+            this.AboutButton.Text = "?";
+            this.AboutButton.UseVisualStyleBackColor = true;
+            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 301);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.ClientSize = new System.Drawing.Size(357, 260);
+            this.Controls.Add(this.AboutButton);
+            this.Controls.Add(this.UpdateLabel);
+            this.Controls.Add(this.PresetsButton);
+            this.Controls.Add(this.Settings);
+            this.Controls.Add(this.ManualButton);
             this.Controls.Add(this.VersionLabel);
-            this.Controls.Add(this.QuitButton);
-            this.Controls.Add(this.LoginMethodsGroup);
-            this.Controls.Add(this.SloganLabel);
             this.Controls.Add(this.LogoSubtextLabel);
             this.Controls.Add(this.LogoLabel);
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EasyWH";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.LoginMethodsGroup.ResumeLayout(false);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,12 +158,12 @@
 
         private System.Windows.Forms.Label LogoLabel;
         private System.Windows.Forms.Label LogoSubtextLabel;
-        private System.Windows.Forms.Label SloganLabel;
-        private System.Windows.Forms.GroupBox LoginMethodsGroup;
-        private System.Windows.Forms.Button PresetsButton;
-        private System.Windows.Forms.Button ManualButton;
-        private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Label VersionLabel;
+        private System.Windows.Forms.Button Settings;
+        private System.Windows.Forms.Button ManualButton;
+        private System.Windows.Forms.Button PresetsButton;
+        private System.Windows.Forms.Label UpdateLabel;
+        private System.Windows.Forms.Button AboutButton;
     }
 }
 

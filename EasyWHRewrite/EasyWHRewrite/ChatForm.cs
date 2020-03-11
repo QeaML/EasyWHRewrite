@@ -79,5 +79,18 @@ namespace EasyWHRewrite
             }
             ChatTextBox.ResetText();
         }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            MainForm M = new MainForm();
+            M.Show();
+            M.Activate();
+            Hide();
+        }
+
+        private void OnFormClosed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

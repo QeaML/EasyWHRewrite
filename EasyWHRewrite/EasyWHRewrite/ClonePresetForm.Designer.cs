@@ -84,6 +84,7 @@
             this.MinimizeBox = false;
             this.Name = "ClonePresetForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EasyWH :: Clone Preset";
             this.ResumeLayout(false);
             this.PerformLayout();
