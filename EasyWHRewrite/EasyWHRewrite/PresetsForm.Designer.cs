@@ -85,6 +85,7 @@
             // PresetInfoLabel
             // 
             this.PresetInfoLabel.AutoEllipsis = true;
+            this.PresetInfoLabel.AutoSize = true;
             this.PresetInfoLabel.Location = new System.Drawing.Point(7, 20);
             this.PresetInfoLabel.Name = "PresetInfoLabel";
             this.PresetInfoLabel.Size = new System.Drawing.Size(229, 13);
@@ -230,6 +231,7 @@
             this.Text = "EasyWH :: Presets";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.PresetInfoGroup.ResumeLayout(false);
+            this.PresetInfoGroup.PerformLayout();
             this.AvatarPreviewGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AvatarPreview)).EndInit();
             this.ResumeLayout(false);
